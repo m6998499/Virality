@@ -232,4 +232,78 @@
                                         />
                                         <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2">
                                             <div className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">ANALYZED</div>
-                                            <div className="bg-gray-900/80 backdrop-blur-md text-white text-xs px-2 py-1 rounded">ID: {data.videoId
+                                            <div className="bg-gray-900/80 backdrop-blur-md text-white text-xs px-2 py-1 rounded">ID: {data.videoId}</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="w-full md:w-1/2 flex flex-col items-center md:items-start space-y-6">
+                                        <div>
+                                            <h2 className="text-2xl font-bold text-white mb-2 text-center md:text-left">Overall Vitality</h2>
+                                            <p className="text-gray-400 text-center md:text-left text-sm max-w-xs">
+                                                This score is calculated based on engagement velocity, views relative to time, and historical performance.
+                                            </p>
+                                        </div>
+                                        
+                                        <div className="flex items-center space-x-8 bg-gray-900/50 p-6 rounded-3xl border border-gray-700 w-full justify-center md:justify-start">
+                                            <CircularScore score={data.vitalityScore} />
+                                            <div className="flex flex-col space-y-4">
+                                                <div className="flex items-center space-x-2">
+                                                    <i className="fa-solid fa-arrow-trend-up text-green-500 w-5"></i>
+                                                    <span className="text-gray-300 font-medium">Trending Up</span>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <i className="fa-solid fa-bolt text-yellow-500 w-5"></i>
+                                                    <span className="text-gray-300 font-medium">High Energy</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+                                    <StatCard iconClass="fa-brands fa-youtube" label="Estimated Views" value={data.views} subtext="Total cumulative" colorClass="text-blue-400" />
+                                    <StatCard iconClass="fa-solid fa-thumbs-up" label="Likes" value={data.likes} subtext="User approvals" colorClass="text-green-400" />
+                                    <StatCard iconClass="fa-solid fa-comment" label="Comments" value={data.comments} subtext="Active discussions" colorClass="text-pink-400" />
+                                    <StatCard iconClass="fa-regular fa-clock" label="Velocity" value={`${data.viewsPerHour}/hr`} subtext="Views per hour" colorClass="text-orange-400" />
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div className="bg-gray-800 border border-gray-700 rounded-3xl p-6 md:p-8">
+                                        <div className="flex items-center space-x-3 mb-6">
+                                            <i className="fa-solid fa-chart-simple text-indigo-400 text-xl"></i>
+                                            <h3 className="text-xl font-bold text-white">Algorithm Factors</h3>
+                                        </div>
+                                        <div className="space-y-6">
+                                            <ProgressBar label="Momentum (Growth Speed)" percentage={data.metrics.momentum} colorClass="bg-blue-500" />
+                                            <ProgressBar label="Longevity (Evergreen Potential)" percentage={data.metrics.longevity} colorClass="bg-purple-500" />
+                                            <ProgressBar label="Shareability (Viral Loops)" percentage={data.metrics.shareability} colorClass="bg-orange-500" />
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-gray-800 border border-gray-700 rounded-3xl p-6 md:p-8 flex flex-col justify-center">
+                                        <div className="flex items-center space-x-3 mb-6">
+                                            <i className="fa-solid fa-share-nodes text-teal-400 text-xl"></i>
+                                            <h3 className="text-xl font-bold text-white">Engagement Rate</h3>
+                                        </div>
+                                        <div className="flex items-baseline space-x-2 mb-4">
+                                            <span className="text-6xl font-extrabold text-white">{data.engagementRate}%</span>
+                                            <span className="text-gray-400 font-medium">/ 100</span>
+                                        </div>
+                                        <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                                            Videos with an engagement rate above 4.5% generally trigger the YouTube recommendation algorithm more frequently. 
+                                            {data.engagementRate > 4.5 ? " This video is performing exceptionally well." : " This video is performing at a standard level."}
+                                        </p>
+                                        <div className="mt-auto pt-6 border-t border-gray-700">
+                                            <div className="flex justify-between items-center text-sm">
+                                                <span className="text-gray-500">Analysis Type</span>
+                                                <span className="text-gray-300 font-medium bg-gray-900 px-3 py-1 rounded-full border border-gray-700">Predictive Simulation</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </main>
+                </div>
+            );
+  
